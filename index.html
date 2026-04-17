@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Name</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: Arial;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Your Name</h1>
+  <p>your bio here</p>
+
+  <button onclick="toggleAudio()">Mute / Unmute</button>
+
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const audio = document.getElementById("bgMusic");
+
+    window.onload = () => {
+      audio.volume = 0.5;
+      audio.play().catch(() => {
+        console.log("Autoplay blocked, waiting for click");
+      });
+    };
+
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+
+    document.body.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+      }
+    }, { once: true });
+  </script>
+
+</body>
+</html>
